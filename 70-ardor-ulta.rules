@@ -1,0 +1,3 @@
+# Ardor Gaming Ulta: hidraw-доступ для вошедшего пользователя.
+SUBSYSTEM=="hidraw", ATTRS{idVendor}=="25a7", ATTRS{idProduct}=="fa7c", TAG+="uaccess"
+SUBSYSTEM=="hidraw", ATTRS{idVendor}=="25a7", ATTRS{idProduct}=="fa7b", TAG+="uaccess"
