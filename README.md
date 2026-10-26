@@ -1,9 +1,10 @@
-# ultactl для Ardor Gaming Ulta
+# ultactl и ulta_gui для Ardor Gaming Ulta
 
-CLI и интерактивное меню для настройки мыши Ardor Gaming Ulta в Linux.
-Один файл на Python 3 (только стандартная библиотека), ничего
-устанавливать не нужно: RGB-подсветка, DPI, частота опроса, заряд
-батареи, LOD, поведение подсветки при движении.
+Настройка мыши Ardor Gaming Ulta в Linux: CLI и интерактивное меню
+(`ultactl.py`, один файл на Python 3, только стандартная библиотека)
+и графический интерфейс (`ulta_gui.py`, GTK4/libadwaita).
+RGB-подсветка, DPI, частота опроса, заряд батареи, LOD, поведение
+подсветки при движении.
 
 Поддерживаемые USB ID:
 
@@ -27,6 +28,35 @@ CLI и интерактивное меню для настройки мыши Ar
 
     mkdir -p ~/.local/bin
     ln -sf $(pwd)/ultactl.py ~/.local/bin/ultactl
+
+## Графический интерфейс
+
+    python3 ulta_gui.py
+
+Отдельное окно на GTK4 + libadwaita: подключение и заряд, LOD,
+режим, цвет, яркость и скорость подсветки, восемь ступеней DPI с
+выбором активной, частота опроса и подсветка при движении. Все
+обращения к мыши идут в фоновом потоке, поэтому окно не замирает,
+пока мышь спит или отвечает медленно.
+
+Для GUI нужны Python 3, PyGObject, GTK ≥ 4.10 и libadwaita ≥ 1.4.
+CLI-версии эти пакеты не требуются.
+
+Debian/Ubuntu (24.04 и новее):
+
+    sudo apt install python3-gi gir1.2-gtk-4.0 gir1.2-adw-1
+
+Fedora:
+
+    sudo dnf install python3-gobject gtk4 libadwaita
+
+Arch:
+
+    sudo pacman -S python-gobject gtk4 libadwaita
+
+На дистрибутивах со старым GTK (Debian 12, Ubuntu 22.04) GUI не
+запустится — пользуйтесь `ultactl.py`. Доступ к `/dev/hidraw*`
+настраивается тем же udev-правилом, что и для CLI (см. ниже).
 
 ## Команды
 
